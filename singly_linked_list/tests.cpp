@@ -30,10 +30,34 @@ void testPopFront() {
     assert(list.pop_front() == 24);
 }
 
+void testErase() {
+    List<int> list;
+    assert(list.erase(42) == int{});
+
+    list.push_back(42);
+    list.push_back(24);
+    list.push_back(36);
+
+    assert(list.erase(24) == 24);
+    assert(list.pop_front() == 42);
+    assert(list.pop_front() == 36);
+
+    list.push_back(42);
+    list.push_back(24);
+    list.push_back(36);
+
+    assert(list.erase(24) == 24);
+    assert(list.erase(42) == 42);
+    assert(list.erase(36) == 36);
+    assert(list.isEmpty());
+
+}
+
 void test(){
     testIsEmpty();
     testPopBack();
     testPopFront();
+    testErase();
     std::cout << "All tests passed!" << std::endl;
 }
 

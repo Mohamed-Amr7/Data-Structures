@@ -24,6 +24,8 @@ private:
     shared_ptr<Link<T>> end;
 public:
     List();
+    T back();
+    T front();
     bool isEmpty();
     bool push_back(T new_elem);
     bool push_front(T new_elem);
