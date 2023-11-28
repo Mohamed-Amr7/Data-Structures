@@ -52,12 +52,39 @@ void testErase() {
     assert(list.isEmpty());
 
 }
+void testReverse() {
+    List<int> list;
+    list.push_back(42);
+    list.push_back(24);
+    list.push_back(36);
 
-void test(){
+    list.reverse();
+
+    assert(list.pop_front() == 36);
+    assert(list.pop_front() == 24);
+    assert(list.pop_front() == 42);
+}
+void testFind() {
+    List<int> list;
+    assert(list.find(42) == nullptr);
+
+    list.push_back(42);
+    list.push_back(24);
+    list.push_back(36);
+
+    assert(list.find(24)->value() == 24);
+    assert(list.find(36)->value() == 36);
+    assert(list.find(42)->value() == 42);
+    assert(list.find(50) == nullptr);
+}
+
+void runAllTests(){
     testIsEmpty();
     testPopBack();
     testPopFront();
     testErase();
-    std::cout << "All tests passed!" << std::endl;
+    testReverse();
+    testFind();
+    cout << "All tests passed!" << endl;
 }
 

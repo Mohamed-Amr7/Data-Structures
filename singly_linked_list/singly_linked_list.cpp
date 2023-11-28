@@ -16,7 +16,7 @@ shared_ptr<Link<T>> &Link<T>::next() {
 
 template<typename T>
 List<T>::List() {
-    begin = std::make_shared<Link<T>>();
+    begin = make_shared<Link<T>>();
     end = nullptr;
 }
 
@@ -89,9 +89,16 @@ T List<T>::pop_back() {
 template<typename T>
 T List<T>::pop_front() {
     if (isEmpty()) return T{};
+
     T value = begin->next()->value();
+    auto tmp = begin;
     begin = begin->next();
-    if (begin->next() == nullptr) end = nullptr;
+    tmp = nullptr;
+
+    // If the list becomes empty after popping, update end to nullptr
+    if (begin->next() == nullptr) {
+        end = nullptr;
+    }
     return value;
 }
 
@@ -137,3 +144,32 @@ T List<T>::erase(T elem) {
     return T{};  // Element not found, return a default-constructed value
 }
 
+template<typename T>
+void List<T>::reverse() {
+    if (isEmpty() or begin->next()->next() == nullptr) {
+        return;
+    }
+
+    shared_ptr<Link<T>> prev = nullptr;
+    end = begin->next();
+    auto current = begin->next();
+    auto next = current->next();
+
+    while (current != nullptr) {
+        next = current->next();
+        current->next() = prev;
+        prev = current;
+        current = next;
+    }
+
+    begin->next() = prev;
+}
+
+template<typename T>
+shared_ptr<Link<T>> List<T>::find(int elem) {
+    auto current = begin->next();
+    while (current != nullptr and current->value() != elem) {
+        current = current->next();
+    }
+    return current;
+}
