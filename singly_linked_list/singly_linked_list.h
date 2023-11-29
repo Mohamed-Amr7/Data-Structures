@@ -13,7 +13,7 @@ private:
 public:
     T value();
     shared_ptr<Link<T>>& next();
-    explicit Link<T>(T value = NULL) : data(value), next_ptr(nullptr) {}
+    explicit Link(T value = T{}) : data(value), next_ptr(nullptr) {}
 };
 
 
