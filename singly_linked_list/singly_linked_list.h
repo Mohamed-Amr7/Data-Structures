@@ -12,7 +12,8 @@ private:
     shared_ptr<Link> next_ptr;
 public:
     T value();
-    shared_ptr<Link<T>>& next();
+    shared_ptr<Link<T>>& getNextPtr();
+    void setNextPtr(shared_ptr<Link<T>>);
     explicit Link(T value = T{}) : data(value), next_ptr(nullptr) {}
 };
 
