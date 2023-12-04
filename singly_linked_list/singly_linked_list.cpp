@@ -13,6 +13,10 @@ template<typename T>
 shared_ptr<Link<T>> &Link<T>::getNextPtr() {
     return next_ptr;
 }
+template<typename T>
+void Link<T>::setNextPtr(shared_ptr<Link<T>>next) {
+    next_ptr = next;
+}
 
 template<typename T>
 List<T>::List() {
