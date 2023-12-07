@@ -73,8 +73,8 @@ bool List<T>::push_front(T new_elem) {
         end = new_link;
     } else {
         new_link->setNextPtr(begin->getNextPtr());
-        begin->getNextPtr()->getPrevPtr() = new_link;
-        begin->getNextPtr() = new_link;
+        begin->getNextPtr()->setPrevPtr(new_link);
+        begin->setNextPtr(new_link);
         new_link->setPrevPtr(begin);
     }
     return true;
@@ -89,18 +89,13 @@ T List<T>::pop_back() {
         value = begin->getNextPtr()->value();
         end = nullptr;
         begin->setNextPtr(end);
-    } else {
-        // Traverse the list to find the second-to-last element
-        auto current = begin->getNextPtr();
-        while (current->getNextPtr() != end) {
-            current = current->getNextPtr();
-        }
+    }else {
         // Pop the last element and update end
-        value = current->getNextPtr()->value();
-        current->setNextPtr(nullptr);
-        end = current;
+        value = end->value();
+        auto secondToLast = end->getPrevPtr();
+        end = secondToLast;
+        end->setNextPtr(nullptr);
     }
-
     return value;
 }
 
@@ -110,10 +105,8 @@ T List<T>::pop_front() {
     if (isEmpty()) return T{};
 
     T value = begin->getNextPtr()->value();
-    auto tmp = begin;
     begin = begin->getNextPtr();
     begin->setPrevPtr(nullptr);
-    tmp = nullptr;
 
     // If the list becomes empty after popping, update end to nullptr
     if (begin->getNextPtr() == nullptr) {
