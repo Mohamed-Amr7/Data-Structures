@@ -67,9 +67,9 @@ bool List<T>::push_front(T new_elem) {
 
 template<typename T>
 T List<T>::pop_back() {
-    if (isEmpty()) return T{};
-    T value;
+    if (isEmpty()) throw runtime_error("List is Empty!");
 
+    T value;
     // If there is only one element in the list, pop it and update end
     if (begin->getNextPtr()->getNextPtr() == nullptr) {
         value = begin->getNextPtr()->value();
@@ -93,7 +93,7 @@ T List<T>::pop_back() {
 
 template<typename T>
 T List<T>::pop_front() {
-    if (isEmpty()) return T{};
+    if (isEmpty()) throw runtime_error("List is Empty!");
 
     T value = begin->getNextPtr()->value();
     auto tmp = begin;
