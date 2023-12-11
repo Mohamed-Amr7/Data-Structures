@@ -14,7 +14,7 @@ void testPopBack() {
     List<int> list;
     list.push_back(42);
     list.push_back(24);
-    
+
     assert(list.pop_back() == 24);
     assert(list.pop_back() == 42);
 }
