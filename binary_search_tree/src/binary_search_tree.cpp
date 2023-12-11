@@ -96,8 +96,6 @@ shared_ptr<typename BST<T>::Node> BST<T>::insert(shared_ptr<Node> node, T new_va
     return node;
 }
 
-
-
 template<class T>
 bool BST<T>::insert(T new_value) {
     if (contains(new_value)) {

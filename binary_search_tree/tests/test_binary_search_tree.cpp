@@ -39,6 +39,7 @@ void testInsert() {
     testTree.insert(56);
     assert(testTree.insert(12));
 }
+
 void testHeight(){}
 void testRemove(){}
 
@@ -63,5 +64,7 @@ void runAllTests() {
     testContains();
     testHeight();
     testRemove();
-    printf("All Tests Passed!");
+}
+int main(){
+    runAllTests();
 }
