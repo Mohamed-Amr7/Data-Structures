@@ -34,9 +34,9 @@ private:
 
     int height(shared_ptr<Node> &node);
 
-    Node find_max(shared_ptr<Node> &node);   // Helper method to find the rightmost node
+    shared_ptr<Node> find_max(shared_ptr<Node> node);   // Helper method to find the rightmost node
 
-    Node find_min(shared_ptr<Node> &node);   // Helper method to find the leftmost node
+    shared_ptr<Node> find_min(shared_ptr<Node> node);   // Helper method to find the leftmost node
 
 
 public:

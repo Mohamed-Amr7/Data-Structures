@@ -107,3 +107,11 @@ bool BST<T>::insert(T new_value) {
     }
 }
 
+template<class T>
+shared_ptr<typename BST<T>::Node> BST<T>::find_min(shared_ptr<Node> node) {
+    // Find the leftmost node of a subtree
+    while (node->getLeft() != nullptr) {
+        node = node->getLeft();
+    }
+    return node;
+}
