@@ -41,6 +41,11 @@ BST<T>::BST() {
 }
 
 template<class T>
+bool BST<T>::isEmpty() {
+    return size() == 0;
+}
+
+template<class T>
 unique_ptr<typename BST<T>::Node> BST<T>::insert(unique_ptr<Node> &node, T new_value) {
     if (node == nullptr) {
         // If the current node is null, create a new node with the given value.
@@ -56,6 +61,7 @@ unique_ptr<typename BST<T>::Node> BST<T>::insert(unique_ptr<Node> &node, T new_v
     }
     return node;
 }
+
 
 template<class T>
 bool BST<T>::insert(T new_value) {
