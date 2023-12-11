@@ -46,6 +46,27 @@ bool BST<T>::isEmpty() {
 }
 
 template<class T>
+bool contains(unique_ptr<typename BST<T>::Node> &node, T value) {
+    // If the current node is null, then the value is not in the tree
+    if (node == nullptr) {
+        return false;
+    }
+    if (!(value < node->getData()) and !(node->getData() < value)) {
+        return true;
+    }
+    else if (value < node->getData()) {
+        return contains(node->getLeft(), node->getData());
+    } else{
+        return contains(node->getRight(), node->getData());
+    }
+}
+
+template<class T>
+bool BST<T>::contains(T value) {
+    return contains(root, value);
+}
+
+template<class T>
 unique_ptr<typename BST<T>::Node> BST<T>::insert(unique_ptr<Node> &node, T new_value) {
     if (node == nullptr) {
         // If the current node is null, create a new node with the given value.
@@ -73,3 +94,4 @@ bool BST<T>::insert(T new_value) {
         return true;
     }
 }
+
