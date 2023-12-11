@@ -55,6 +55,7 @@ public:
     bool contains(T value);
 };
 
+
 #include "binary_search_tree.cpp"
 
 #endif //BINARY_SEARCH_TREE_BINARY_SEARCH_TREE_H

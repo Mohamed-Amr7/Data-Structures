@@ -20,7 +20,7 @@ unique_ptr<typename BST<T>::Node> BST<T>::Node::getLeft() {
 }
 
 template<class T>
-unique_ptr<typename BST<T>::Node> BST<T>::Node::getRight(){
+unique_ptr<typename BST<T>::Node> BST<T>::Node::getRight() {
     return right;
 }
 
@@ -41,13 +41,12 @@ BST<T>::BST() {
 }
 
 template<class T>
-unique_ptr<typename BST<T>::Node> BST<T>::insert(unique_ptr<Node>& node, T new_value) {
+unique_ptr<typename BST<T>::Node> BST<T>::insert(unique_ptr<Node> &node, T new_value) {
     if (node == nullptr) {
         // If the current node is null, create a new node with the given value.
         node = make_unique<Node>(new_value);
         return true;
     }
-
     if (new_value < node->getData()) {
         // Recursively insert into the left subtree.
         node->setLeft(insert(node->getLeft(), new_value));
@@ -58,3 +57,13 @@ unique_ptr<typename BST<T>::Node> BST<T>::insert(unique_ptr<Node>& node, T new_v
     return node;
 }
 
+template<class T>
+bool BST<T>::insert(T new_value) {
+    if (contains(new_value)) {
+        return false;
+    } else {
+        root = insert(root,new_value);
+        ++node_count;
+        return true;
+    }
+}
