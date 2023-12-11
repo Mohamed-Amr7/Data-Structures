@@ -115,3 +115,12 @@ shared_ptr<typename BST<T>::Node> BST<T>::find_min(shared_ptr<Node> node) {
     }
     return node;
 }
+
+template<class T>
+shared_ptr<typename BST<T>::Node> BST<T>::find_max(shared_ptr<Node> node) {
+    // Find the rightmost node of a subtree
+    while (node->getRight() != nullptr) {
+        node = node->getRight();
+    }
+    return node;
+}
