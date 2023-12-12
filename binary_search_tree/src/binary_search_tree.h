@@ -16,6 +16,8 @@ private:
     public:
         explicit Node(T value);
         T getData();
+        void setData(T new_data);
+
         shared_ptr<Node> getLeft();
         shared_ptr<Node> getRight();
 
@@ -28,15 +30,13 @@ private:
 
     shared_ptr<Node> insert(shared_ptr<Node> node, T new_value);
 
-    shared_ptr<Node> remove(shared_ptr<Node> &parent, shared_ptr<Node> &node, T old_value);
+    shared_ptr<Node> remove(shared_ptr<Node> node, T old_value);
 
     bool contains(shared_ptr<Node> node, T value);
 
     int height(shared_ptr<Node> &node);
 
-    shared_ptr<Node> find_max(shared_ptr<Node> node);   // Helper method to find the rightmost node
-
-    shared_ptr<Node> find_min(shared_ptr<Node> node);   // Helper method to find the leftmost node
+    Node find_min(shared_ptr<Node> node);   // Helper method to find the leftmost node
 
 
 public:

@@ -16,6 +16,11 @@ T BST<T>::Node::getData() {
 }
 
 template<class T>
+void BST<T>::Node::setData(T new_data) {
+    data = new_data;
+}
+
+template<class T>
 shared_ptr<typename BST<T>::Node> BST<T>::Node::getLeft() {
     return left;
 }
@@ -53,7 +58,7 @@ bool BST<T>::isEmpty() {
 
 template<class T>
 T BST<T>::top() {
-    if(isEmpty()) throw runtime_error("BST is empty!");
+    if (isEmpty()) throw runtime_error("BST is empty!");
     return root->getData();
 }
 
@@ -65,11 +70,10 @@ bool BST<T>::contains(shared_ptr<typename BST<T>::Node> node, T value) {
     }
     if (!(value < node->getData()) and !(node->getData() < value)) {
         return true;
-    }
-    else if (value < node->getData()) {
-        return contains(node->getLeft(),value);
-    } else{
-        return contains(node->getRight(), node->getData());
+    } else if (value < node->getData()) {
+        return contains(node->getLeft(), value);
+    } else {
+        return contains(node->getRight(), value);
     }
 }
 
@@ -101,26 +105,64 @@ bool BST<T>::insert(T new_value) {
     if (contains(new_value)) {
         return false;
     } else {
-        root = insert(root,new_value);
+        root = insert(root, new_value);
         ++node_count;
         return true;
     }
 }
 
 template<class T>
-shared_ptr<typename BST<T>::Node> BST<T>::find_min(shared_ptr<Node> node) {
+BST<T>::Node BST<T>::find_min(shared_ptr<Node> node) {
     // Find the leftmost node of a subtree
     while (node->getLeft() != nullptr) {
         node = node->getLeft();
     }
+    return *node;
+}
+
+template<class T>
+shared_ptr<typename BST<T>::Node> BST<T>::remove(shared_ptr<Node> node, T old_value) {
+    if (node == nullptr) {
+        return nullptr; // Base case: element not found.
+    }
+
+    // Finding phase
+    if (old_value < node->getData()) {
+        // Recursively remove from the left subtree and update the left pointer.
+        node->setLeft(remove(node->getLeft(), old_value));
+    } else if (node->getData() < old_value) {
+        // Recursively remove from the right subtree and update the right pointer.
+        node->setRight(remove(node->getRight(), old_value));
+    } else {
+        // Element found, perform removal.
+
+        // In case there is only a Right subtree or no subtree at all.
+        if (node->getLeft() == nullptr) {
+            return node->getRight();
+        }
+            // In case there is only a left subtree.
+        else if (node->getRight() == nullptr) {
+            return node->getLeft();
+        } else {
+            // Find the minimum value in the right subtree, which serves as the replacement for the current node's data.
+            Node tmp = find_min(node->getRight());
+            node->setData(tmp.getData());
+
+            // Recursively remove the leftmost right-subtree node after updating the current node's data.
+            // Multiple nodes sharing the same data temporarily isn't an issue as we search from the node's right subtree.
+            node->setRight(remove(node->getRight(), tmp.getData()));
+        }
+    }
+
     return node;
 }
 
 template<class T>
-shared_ptr<typename BST<T>::Node> BST<T>::find_max(shared_ptr<Node> node) {
-    // Find the rightmost node of a subtree
-    while (node->getRight() != nullptr) {
-        node = node->getRight();
+bool BST<T>::remove(T old_value) {
+    if (contains(old_value)) {
+        root = remove(root, old_value);
+        --node_count;
+        return true;
     }
-    return node;
+    return false;
 }
