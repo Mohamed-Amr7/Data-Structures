@@ -39,8 +39,36 @@ void testInsert() {
     testTree.insert(56);
     assert(testTree.insert(12));
 }
+void testClear(){
+    BST<int> testTree;
+    testTree.insert(5);
+    testTree.insert(3);
+    testTree.insert(4);
+    testTree.insert(2);
+    testTree.insert(7);
+    testTree.insert(6);
+    testTree.insert(8);
+    testTree.clear();
+    assert(testTree.isEmpty());
+}
+void testHeight(){
+    BST<int> testTree;
+    testTree.insert(5);
+    testTree.insert(3);
+    testTree.insert(4);
+    testTree.insert(2);
+    testTree.insert(7);
+    testTree.insert(6);
+    testTree.insert(8);
+    testTree.insert(13);
+    assert(testTree.height() == 4);
 
-void testHeight(){}
+    testTree.clear();
+    assert(testTree.height() == 0);
+    testTree.insert(42);
+    assert(testTree.height() == 1);
+}
+
 void testRemove() {
     BST<int> testTree;
     assert(!testTree.remove(99));
@@ -89,11 +117,13 @@ void runAllTests() {
     testIsEmpty();
     testTop();
     testSize();
+    testClear();
     testInsert();
     testContains();
     testHeight();
     testRemove();
 }
+
 int main(){
     runAllTests();
 }
