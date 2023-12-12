@@ -177,3 +177,21 @@ template<class T>
 int BST<T>::height() {
     return height(root);
 }
+
+
+template<class T>
+shared_ptr<typename BST<T>::Node> BST<T>::clear(shared_ptr<Node> node) {
+    if (node != nullptr) {
+        // Recursively clear the left and right subtrees.
+        node->setLeft(clear(node->getLeft()));
+        node->setRight(clear(node->getRight()));
+        return nullptr;
+    }
+    return nullptr; // Return nullptr to update the parent's pointer.
+}
+
+template<class T>
+void BST<T>::clear() {
+    root = clear(root);
+    node_count = 0;
+}

@@ -38,6 +38,7 @@ private:
 
     Node find_min(shared_ptr<Node> node);   // Helper method to find the leftmost node
 
+    shared_ptr<Node> clear(shared_ptr<Node> node);
 
 public:
     BST();
@@ -56,6 +57,7 @@ public:
 
     bool contains(T value);
 
+    void clear();
 };
 
 #include "binary_search_tree.cpp"
