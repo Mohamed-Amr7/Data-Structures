@@ -166,3 +166,14 @@ bool BST<T>::remove(T old_value) {
     }
     return false;
 }
+
+template<class T>
+int BST<T>::height(shared_ptr<Node> node) {
+    if(node == nullptr) return 0;
+    return max(height(node->getRight()), height(node->getLeft())) + 1;
+}
+
+template<class T>
+int BST<T>::height() {
+    return height(root);
+}

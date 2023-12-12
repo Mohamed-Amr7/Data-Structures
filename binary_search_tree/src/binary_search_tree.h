@@ -34,7 +34,7 @@ private:
 
     bool contains(shared_ptr<Node> node, T value);
 
-    int height(shared_ptr<Node> &node);
+    int height(shared_ptr<Node> node);
 
     Node find_min(shared_ptr<Node> node);   // Helper method to find the leftmost node
 
@@ -55,6 +55,7 @@ public:
     bool remove(T old_value);
 
     bool contains(T value);
+
 };
 
 #include "binary_search_tree.cpp"
