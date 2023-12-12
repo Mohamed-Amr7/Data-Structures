@@ -41,7 +41,36 @@ void testInsert() {
 }
 
 void testHeight(){}
-void testRemove(){}
+void testRemove() {
+    BST<int> testTree;
+    assert(!testTree.remove(99));
+    testTree.insert(42);
+    testTree.insert(23);
+    testTree.insert(56);
+    assert(!testTree.remove(99));
+    assert(testTree.remove(42));
+    assert(testTree.remove(56));
+    assert(testTree.remove(23));
+
+    testTree.insert(42);
+    testTree.insert(23);
+    testTree.insert(56);
+    testTree.insert(12);
+    testTree.insert(37);
+    assert(testTree.remove(23));
+    assert(!testTree.contains(23));
+    assert(testTree.contains(42));
+    assert(testTree.contains(56));
+    assert(testTree.contains(12));
+    assert(testTree.contains(37));
+    assert(testTree.remove(42));
+    assert(!testTree.contains(42));
+    assert(testTree.remove(12));
+    assert(!testTree.contains(12));
+    assert(testTree.contains(56));
+    assert(testTree.contains(37));
+}
+
 
 void testContains() {
     BST<int> testTree;
