@@ -214,3 +214,21 @@ vector<T> BST<T>::traverse(TraverseType type) {
     }
 }
 
+template<class T>
+void BST<T>::inorderTraversal(shared_ptr<Node> node, vector<T>& result) {
+    if (node != nullptr) {
+        // Inorder traversal follows the pattern of left subtree, current node, and then right subtree.
+        // This sequence ensures that nodes are visited in ascending order for a binary search tree.
+        inorderTraversal(node->left, result);
+        result.push_back(node->data);
+        inorderTraversal(node->right, result);
+    }
+}
+
+// Wrapper function
+template<class T>
+vector<T> BST<T>::inorderTraversal() {
+    vector<T> result;
+    inorderTraversal(root, result);
+    return result;
+}
