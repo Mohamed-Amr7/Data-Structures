@@ -113,6 +113,66 @@ void testContains() {
     assert(!testTree.contains(99));
 }
 
+void testTraverseInorder() {
+    BST<int> testTree;
+    testTree.insert(5);
+    testTree.insert(3);
+    testTree.insert(7);
+    testTree.insert(2);
+    testTree.insert(4);
+    testTree.insert(6);
+    testTree.insert(8);
+
+    vector<int> result = testTree.traverse(BST<int>::INORDER);
+    vector<int> expected = {2, 3, 4, 5, 6, 7, 8};
+    assert(result == expected);
+}
+
+void testTraversePreorder() {
+    BST<int> testTree;
+    testTree.insert(5);
+    testTree.insert(3);
+    testTree.insert(7);
+    testTree.insert(2);
+    testTree.insert(4);
+    testTree.insert(6);
+    testTree.insert(8);
+
+    vector<int> result = testTree.traverse(BST<int>::PREORDER);
+    vector<int> expected = {5, 3, 2, 4, 7, 6, 8};
+    assert(result == expected);
+}
+
+void testTraversePostorder() {
+    BST<int> testTree;
+    testTree.insert(5);
+    testTree.insert(3);
+    testTree.insert(7);
+    testTree.insert(2);
+    testTree.insert(4);
+    testTree.insert(6);
+    testTree.insert(8);
+
+    vector<int> result = testTree.traverse(BST<int>::POSTORDER);
+    vector<int> expected = {2, 4, 3, 6, 8, 7, 5};
+    assert(result == expected);
+}
+
+void testTraverseLevelorder() {
+    BST<int> testTree;
+    testTree.insert(5);
+    testTree.insert(3);
+    testTree.insert(7);
+    testTree.insert(2);
+    testTree.insert(4);
+    testTree.insert(6);
+    testTree.insert(8);
+
+    vector<int> result = testTree.traverse(BST<int>::LEVELORDER);
+    vector<int> expected = {5, 3, 7, 2, 4, 6, 8};
+    assert(result == expected);
+}
+
 void runAllTests() {
     testIsEmpty();
     testTop();
@@ -122,6 +182,10 @@ void runAllTests() {
     testContains();
     testHeight();
     testRemove();
+    testTraverseInorder();
+    testTraversePreorder();
+    testTraversePostorder();
+    testTraverseLevelorder();
 }
 
 int main(){

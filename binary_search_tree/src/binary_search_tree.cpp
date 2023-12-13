@@ -274,6 +274,7 @@ vector<T> BST<T>::levelOrderTraversal(shared_ptr<Node> node) {
     if (node == nullptr) {
         return vector<T>{};
     }
+    // Level order traversal explores nodes level by level, starting from the root.
     vector<T>result;
     queue<shared_ptr<Node>> queue;
     queue.push(node);
@@ -281,7 +282,6 @@ vector<T> BST<T>::levelOrderTraversal(shared_ptr<Node> node) {
     while (!queue.empty()) {
         auto current = queue.front();
         queue.pop();
-
         result.push_back(current->getData());
 
         if (current->getLeft() != nullptr) {
