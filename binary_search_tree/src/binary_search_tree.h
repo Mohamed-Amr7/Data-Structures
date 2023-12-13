@@ -46,13 +46,22 @@ private:
 
     shared_ptr<Node> clear(shared_ptr<Node> node);
 
-    vector<T> inorderTraversal(std::shared_ptr<Node> node);
+    // Recursive functions that takes a vector by reference
+    // and places the elements in correct traversing order
+    void inorderTraversal(shared_ptr<Node> node, vector<T>& result);
 
-    vector<T> preorderTraversal(std::shared_ptr<Node> node);
+    void preorderTraversal(shared_ptr<Node> node, vector<T>& result);
 
-    vector<T> postorderTraversal(std::shared_ptr<Node> node);
+    void postorderTraversal(shared_ptr<Node> node, vector<T>& result);
 
-    vector<T> levelOrderTraversal(std::shared_ptr<Node> root);
+    // Wrapper functions for the recursive functions
+    vector<T> inorderTraversal();
+
+    vector<T> preorderTraversal();
+
+    vector<T> postorderTraversal();
+
+    vector<T> levelOrderTraversal(shared_ptr<Node> root);
 
 public:
     enum TraverseType {
