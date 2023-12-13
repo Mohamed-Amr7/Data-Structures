@@ -2,6 +2,7 @@
 #define BINARY_SEARCH_TREE_BINARY_SEARCH_TREE_H
 
 #include <memory>
+#include <vector>
 
 using namespace std;
 
@@ -13,15 +14,20 @@ private:
         T data;
         shared_ptr<Node> left;
         shared_ptr<Node> right;
+
     public:
         explicit Node(T value);
+
         T getData();
+
         void setData(T new_data);
 
         shared_ptr<Node> getLeft();
+
         shared_ptr<Node> getRight();
 
         void setLeft(shared_ptr<Node> left_ptr);
+
         void setRight(shared_ptr<Node> right_ptr);
     };
 
@@ -40,7 +46,22 @@ private:
 
     shared_ptr<Node> clear(shared_ptr<Node> node);
 
+    vector<T> inorderTraversal(std::shared_ptr<Node> node);
+
+    vector<T> preorderTraversal(std::shared_ptr<Node> node);
+
+    vector<T> postorderTraversal(std::shared_ptr<Node> node);
+
+    vector<T> levelOrderTraversal(std::shared_ptr<Node> root);
+
 public:
+    enum TraverseType {
+        INORDER,
+        PREORDER,
+        POSTORDER,
+        LEVELORDER
+    };
+
     BST();
 
     bool isEmpty();
@@ -58,6 +79,8 @@ public:
     bool contains(T value);
 
     void clear();
+
+    std::vector<T> traverse(TraverseType type);
 };
 
 #include "binary_search_tree.cpp"
