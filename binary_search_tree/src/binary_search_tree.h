@@ -61,7 +61,7 @@ private:
 
     vector<T> postorderTraversal();
 
-    vector<T> levelOrderTraversal(shared_ptr<Node> root);
+    vector<T> levelOrderTraversal(shared_ptr<Node> node);
 
 public:
     enum TraverseType {

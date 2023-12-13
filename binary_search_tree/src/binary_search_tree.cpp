@@ -1,5 +1,6 @@
 #include <stdexcept>
 #include <iostream>
+#include <queue>
 #include "binary_search_tree.h"
 
 using namespace std;
@@ -201,11 +202,11 @@ template<class T>
 vector<T> BST<T>::traverse(TraverseType type) {
     switch (type) {
         case INORDER:
-            return inorderTraversal(root);
+            return inorderTraversal();
         case PREORDER:
-            return preorderTraversal(root);
+            return preorderTraversal();
         case POSTORDER:
-            return postorderTraversal(root);
+            return postorderTraversal();
         case LEVELORDER:
             return levelOrderTraversal(root);
         default:
@@ -268,3 +269,28 @@ vector<T> BST<T>::postorderTraversal() {
     return result;
 }
 
+template<class T>
+vector<T> BST<T>::levelOrderTraversal(shared_ptr<Node> node) {
+    if (node == nullptr) {
+        return vector<T>{};
+    }
+    vector<T>result;
+    queue<shared_ptr<Node>> queue;
+    queue.push(node);
+
+    while (!queue.empty()) {
+        auto current = queue.front();
+        queue.pop();
+
+        result.push_back(current->getData());
+
+        if (current->getLeft() != nullptr) {
+            queue.push(current->getLeft());
+        }
+
+        if (current->getRight() != nullptr) {
+            queue.push(current->getRight());
+        }
+    }
+    return result;
+}
