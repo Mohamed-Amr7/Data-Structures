@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include <iostream>
 #include "binary_search_tree.h"
 
 using namespace std;
@@ -169,7 +170,7 @@ bool BST<T>::remove(T old_value) {
 
 template<class T>
 int BST<T>::height(shared_ptr<Node> node) {
-    if(node == nullptr) return 0;
+    if (node == nullptr) return 0;
     return max(height(node->getRight()), height(node->getLeft())) + 1;
 }
 
@@ -195,3 +196,21 @@ void BST<T>::clear() {
     root = clear(root);
     node_count = 0;
 }
+
+template<class T>
+vector<T> BST<T>::traverse(TraverseType type) {
+    switch (type) {
+        case INORDER:
+            return inorderTraversal(root);
+        case PREORDER:
+            return preorderTraversal(root);
+        case POSTORDER:
+            return postorderTraversal(root);
+        case LEVELORDER:
+            return levelOrderTraversal(root);
+        default:
+            cerr << "Invalid traversal type!" << endl;
+            return vector<T>{};
+    }
+}
+
