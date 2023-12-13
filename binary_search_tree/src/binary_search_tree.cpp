@@ -219,9 +219,9 @@ void BST<T>::inorderTraversal(shared_ptr<Node> node, vector<T>& result) {
     if (node != nullptr) {
         // Inorder traversal follows the pattern of left subtree, current node, and then right subtree.
         // This sequence ensures that nodes are visited in ascending order for a binary search tree.
-        inorderTraversal(node->left, result);
-        result.push_back(node->data);
-        inorderTraversal(node->right, result);
+        inorderTraversal(node->getLeft(), result);
+        result.push_back(node->getData());
+        inorderTraversal(node->getRight(), result);
     }
 }
 
@@ -230,5 +230,24 @@ template<class T>
 vector<T> BST<T>::inorderTraversal() {
     vector<T> result;
     inorderTraversal(root, result);
+    return result;
+}
+
+template<class T>
+void BST<T>::preorderTraversal(shared_ptr<Node> node, vector<T>& result) {
+    if (node != nullptr) {
+        // Preorder traversal starts with processing the current node, followed by the left subtree and then the right subtree.
+        // This order is useful for creating a copy of the tree or evaluating expressions.
+        result.push_back(node->getData());
+        preorderTraversal(node->getLeft(), result);
+        preorderTraversal(node->getRight(), result);
+    }
+}
+
+// Wrapper function
+template<class T>
+vector<T> BST<T>::preorderTraversal() {
+    vector<T> result;
+    preorderTraversal(root, result);
     return result;
 }
