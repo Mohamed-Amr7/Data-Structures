@@ -28,4 +28,5 @@ public:
     void resize(int newCapacity);
 };
 
+#include "dynamic_array.cpp"
 #endif //DYNAMICARRAY_H
