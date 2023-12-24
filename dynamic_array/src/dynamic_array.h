@@ -7,21 +7,22 @@ template <typename T>
 class DynamicArray {
 private:
     std::shared_ptr<T[]> array;
-    int size;
     int capacity;
     void shrink();
+    int _size;
     void enlarge();
 
 public:
     DynamicArray();
 
-    T& front();
-    T& back();
+    int size();
+    T front();
+    T back();
     T popBack();
-    bool pushBack(const T& value);
-    bool insert(int index, const T& value);
+    bool pushBack(const T value);
+    bool insert(int index, const T value);
     bool isEmpty() const;
-    bool contains(const T& value) const;
+    bool contains(const T value) const;
     void reverse();
     void clear();
     void resize(int newCapacity);
