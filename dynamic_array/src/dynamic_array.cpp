@@ -54,6 +54,29 @@ T DynamicArray<T>::popBack() {
 }
 
 template <typename T>
+bool DynamicArray<T>::insert(int index, const T value) {
+    if (index >= 0 && index <= _size) {
+        if (_size == capacity) {
+            enlarge();
+        }
+
+        for (int i = _size; i > index; i--) {
+            array[i] = array[i - 1];
+        }
+
+        array[index] = value;
+        _size++;
+    }
+}
+
+template <typename T>
+void DynamicArray<T>::reverse() {
+    for (int i = 0; i < _size / 2; i++) {
+        std::swap(array[i], array[_size - i - 1]);
+    }
+}
+
+template <typename T>
 void DynamicArray<T>::resize(int newCapacity) {
     if (newCapacity > capacity) {
         // Enlarge the array

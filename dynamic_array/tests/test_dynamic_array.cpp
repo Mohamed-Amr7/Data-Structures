@@ -14,8 +14,28 @@ void testPushPopBack() {
     assert(arr.back() == 2);
     assert(arr.front() == 1);
 }
-void testReverse(){}
-void testInsert() {}
+
+void testInsert() {
+    DynamicArray<int> arr;
+    arr.pushBack(1);
+    arr.pushBack(3);
+
+    arr.insert(1, 2);
+    assert(arr.back() == 3);
+    assert(arr.front() == 1);
+    assert(arr.size() == 3);
+}
+
+void testReverse() {
+    DynamicArray<int> arr;
+    arr.pushBack(1);
+    arr.pushBack(2);
+    arr.pushBack(3);
+
+    arr.reverse();
+    assert(arr.front() == 3);
+    assert(arr.back() == 1);
+}
 
 void testClear() {
     DynamicArray<int> arr;
