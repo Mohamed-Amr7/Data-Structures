@@ -6,6 +6,32 @@ DynamicArray<T>::DynamicArray() : _size(0), capacity(16) {
 }
 
 template <typename T>
+T DynamicArray<T>::back() {
+    return array[_size - 1];
+}
+
+template <typename T>
+T DynamicArray<T>::front() {
+    return array[0];
+}
+
+template <typename T>
+void DynamicArray<T>::clear() {
+    _size = 0;
+    resize(0);
+}
+
+template <typename T>
+bool DynamicArray<T>::isEmpty() const {
+    return _size == 0;
+}
+
+template <typename T>
+int DynamicArray<T>::size() const{
+    return _size;
+}
+
+template <typename T>
 bool DynamicArray<T>::pushBack(const T value) {
     if (_size == capacity) {
         enlarge();
@@ -25,16 +51,6 @@ T DynamicArray<T>::popBack() {
         return value;
     }
     return {};
-}
-
-template <typename T>
-T DynamicArray<T>::back() {
-    return array[_size - 1];
-}
-
-template <typename T>
-T DynamicArray<T>::front() {
-    return array[0];
 }
 
 template <typename T>
@@ -62,13 +78,23 @@ void DynamicArray<T>::resize(int newCapacity) {
 }
 
 template <typename T>
+bool DynamicArray<T>::contains(const T value){
+    for (int i = 0; i < _size; i++) {
+        if (array[i] == value) {
+            return true;
+        }
+    }
+    return false;
+}
+
+template <typename T>
 void DynamicArray<T>::shrink() {
-    int newCapacity = std::max(2, capacity / 2);
+    int newCapacity = std::max(16, capacity / 4);
     resize(newCapacity);
 }
 
 template <typename T>
 void DynamicArray<T>::enlarge() {
-    int newCapacity = capacity * 2;
+    int newCapacity = std::max(16,capacity * 2);
     resize(newCapacity);
 }

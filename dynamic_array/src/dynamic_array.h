@@ -15,14 +15,14 @@ private:
 public:
     DynamicArray();
 
-    int size();
+    int size() const;
     T front();
     T back();
     T popBack();
     bool pushBack(const T value);
     bool insert(int index, const T value);
     bool isEmpty() const;
-    bool contains(const T value) const;
+    bool contains(const T value) ;
     void reverse();
     void clear();
     void resize(int newCapacity);
