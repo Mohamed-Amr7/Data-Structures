@@ -5,25 +5,26 @@
 
 template <typename T>
 class DynamicArray {
-public:
-    DynamicArray();
-
-    void pushBack(const T& value);
-    void popBack();
-    T& back();
-    T& front();
-    void insert(int index, const T& value);
-    void clear();
-    bool isEmpty() const;
-    void reverse();
-    int find(const T& value) const;
-
 private:
     std::shared_ptr<T[]> array;
     int size;
     int capacity;
+    void shrink();
+    void enlarge();
 
-    void resize();
+public:
+    DynamicArray();
+
+    T& front();
+    T& back();
+    T popBack();
+    bool pushBack(const T& value);
+    bool insert(int index, const T& value);
+    bool isEmpty() const;
+    bool contains(const T& value) const;
+    void reverse();
+    void clear();
+    void resize(int newCapacity);
 };
 
 #endif //DYNAMICARRAY_H
