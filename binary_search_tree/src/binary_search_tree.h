@@ -1,5 +1,5 @@
-#ifndef BINARY_SEARCH_TREE_BINARY_SEARCH_TREE_H
-#define BINARY_SEARCH_TREE_BINARY_SEARCH_TREE_H
+#ifndef BINARY_SEARCH_TREE_H
+#define BINARY_SEARCH_TREE_H
 
 #include <memory>
 #include <vector>
@@ -94,4 +94,4 @@ public:
 
 #include "binary_search_tree.cpp"
 
-#endif //BINARY_SEARCH_TREE_BINARY_SEARCH_TREE_H
+#endif //BINARY_SEARCH_TREE_H
