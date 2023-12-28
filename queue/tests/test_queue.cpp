@@ -1,95 +1,65 @@
 #include "queue.h"
-#include <cassert>
+#include <assert.h>
 
-void testPushPopBack() {
-    DynamicArray<int> arr;
-    arr.pushBack(1);
-    arr.pushBack(2);
-    arr.pushBack(3);
-
-    assert(arr.back() == 3);
-    assert(arr.front() == 1);
-
-    arr.popBack();
-    assert(arr.back() == 2);
-    assert(arr.front() == 1);
+void testPush() {
+    Queue<int> queue;
+    assert(queue.isEmpty());
+    queue.push(10);
+    assert(!queue.isEmpty());
+    assert(queue.front() == 10);
+    assert(queue.back() == 10);
+    queue.push(3);
+    assert(queue.front() == 10);
+    assert(queue.back() == 3);
 }
 
-void testInsert() {
-    DynamicArray<int> arr;
-    arr.pushBack(1);
-    arr.pushBack(3);
-
-    arr.insert(1, 2);
-    assert(arr.back() == 3);
-    assert(arr.front() == 1);
-    assert(arr.size() == 3);
+void testPop() {
+    Queue<int> queue;
+    queue.push(10);
+    queue.push(20);
+    queue.push(30);
+    assert(queue.size() == 3);
+    assert(queue.pop() == 10);
+    assert(queue.size() == 2);
+    queue.push(5);
+    assert(queue.size() == 3);
+    assert(queue.pop() == 20);
+    assert(queue.pop() == 30);
+    assert(queue.size() == 1);
 }
+void testPopEmptyQueue(){
+    Queue<int>queue;
+    bool exceptionThrown = false;
+    try {
+        queue.pop();
+    } catch (std::invalid_argument& e) {
+        exceptionThrown = true;
+    }
+    assert(exceptionThrown);
 
-void testReverse() {
-    DynamicArray<int> arr;
-    arr.pushBack(1);
-    arr.pushBack(2);
-    arr.pushBack(3);
-
-    arr.reverse();
-    assert(arr.front() == 3);
-    assert(arr.back() == 1);
+};
+void testIsEmpty() {
+    Queue<int> queue;
+    assert(queue.isEmpty());
+    queue.push(10);
+    assert(!queue.isEmpty());
 }
 
 void testClear() {
-    DynamicArray<int> arr;
-    arr.pushBack(1);
-    arr.pushBack(2);
-
-    arr.clear();
-    assert(arr.isEmpty());
-}
-
-void testContains() {
-    DynamicArray<int> arr;
-    arr.pushBack(1);
-    arr.pushBack(2);
-    arr.pushBack(3);
-
-    assert(arr.contains(2));
-    assert(!arr.contains(4));
-}
-
-void testResize() {
-    DynamicArray<int> arr;
-
-    assert(arr.size() == 0);
-    assert(arr.isEmpty());
-
-    arr.pushBack(1);
-    arr.pushBack(2);
-    arr.pushBack(3);
-
-    assert(arr.size() == 3);
-    assert(!arr.isEmpty());
-    arr.resize(2);
-    assert(arr.size() == 2);
-    assert(!arr.isEmpty());
-
-    arr.resize(5);
-
-
-    assert(arr.size() == 2);
-    assert(!arr.isEmpty());
-
-    arr.clear();
-    assert(arr.isEmpty());
-    arr.pushBack(5);
-    assert(arr.size() == 1);
+    Queue<int> queue;
+    queue.push(10);
+    queue.push(20);
+    assert(queue.size() == 2);
+    queue.clear();
+    assert(queue.isEmpty());
+    assert(queue.size() == 0);
 }
 
 int main() {
-    testPushPopBack();
-    testInsert();
+    testPush();
+    testPop();
+    testPopEmptyQueue();
+    testIsEmpty();
     testClear();
-    testReverse();
-    testContains();
-    testResize();
     return 0;
 }
