@@ -7,6 +7,7 @@ template <typename T>
 class Queue {
 private:
     class Node {
+    public:
         T data;
         std::shared_ptr<Node> next;
         Node();
