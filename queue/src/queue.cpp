@@ -1,5 +1,9 @@
 #include "Queue.h"
 
+
+template<typename T>
+Queue<T>::Node::Node(const T& val) : data(val), next(nullptr) {}
+
 template <typename T>
 Queue<T>::Queue() : frontPtr(nullptr), backPtr(nullptr) {}
 
@@ -37,3 +41,4 @@ void Queue<T>::clear() {
     backPtr = nullptr;
     _size = 0;
 }
+
