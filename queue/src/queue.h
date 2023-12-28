@@ -15,6 +15,7 @@ private:
     std::shared_ptr<Node> frontPtr;
     std::shared_ptr<Node> backPtr;
     void ensureNotEmpty();
+    int _size = 0;
 
 public:
     Queue();
@@ -25,6 +26,7 @@ public:
     T back() ;
     bool isEmpty() ;
     void clear();
+    int size();
 };
 
 #endif // QUEUE_H
