@@ -9,11 +9,12 @@ private:
     class Node {
         T data;
         std::shared_ptr<Node> next;
-        explicit Node(const T& val) : data(val), next(nullptr) {}
+        explicit Node(const T& val);
     };
 
     std::shared_ptr<Node> frontPtr;
     std::shared_ptr<Node> backPtr;
+    void ensureNotEmpty();
 
 public:
     Queue();
@@ -22,7 +23,7 @@ public:
     T pop();
     T front() ;
     T back() ;
-    bool isEmpty() const;
+    bool isEmpty() ;
     void clear();
 };
 
