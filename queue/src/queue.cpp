@@ -45,7 +45,6 @@ void Queue<T>::clear() {
     _size = 0;
 }
 
-
 template <typename T>
 bool Queue<T>::push(T val) {
     auto new_node = std::make_shared<Node>(val);
@@ -64,7 +63,6 @@ template <typename T>
 T Queue<T>::pop() {
     ensureNotEmpty();
     int ret_val = frontPtr->data;
-    auto temp = frontPtr;
     frontPtr = frontPtr->next;
     if (!frontPtr) {
         backPtr = nullptr;
