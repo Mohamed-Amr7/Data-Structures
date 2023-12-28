@@ -9,6 +9,7 @@ private:
     class Node {
         T data;
         std::shared_ptr<Node> next;
+        Node();
         explicit Node(const T& val);
     };
 
