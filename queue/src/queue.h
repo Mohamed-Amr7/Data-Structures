@@ -29,4 +29,5 @@ public:
     int size();
 };
 
+#include "queue.cpp"
 #endif // QUEUE_H
