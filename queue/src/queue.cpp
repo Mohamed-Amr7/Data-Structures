@@ -1,6 +1,3 @@
-#include "Queue.h"
-
-
 template<typename T>
 Queue<T>::Node::Node(const T& val) : data(val), next(nullptr) {}
 

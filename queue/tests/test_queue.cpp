@@ -1,5 +1,5 @@
 #include "queue.h"
-#include <assert.h>
+#include <cassert>
 
 void testPush() {
     Queue<int> queue;
