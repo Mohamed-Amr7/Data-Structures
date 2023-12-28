@@ -44,3 +44,32 @@ void Queue<T>::clear() {
     backPtr = nullptr;
     _size = 0;
 }
+
+
+template <typename T>
+bool Queue<T>::push(T val) {
+    auto new_node = std::make_shared<Node>(val);
+    if (isEmpty()) {
+        frontPtr = new_node;
+        backPtr = new_node;
+    } else {
+        backPtr->next = new_node;
+        backPtr = new_node;
+    }
+    _size++;
+    return true;
+}
+
+template <typename T>
+T Queue<T>::pop() {
+    ensureNotEmpty();
+    int ret_val = frontPtr->data;
+    auto temp = frontPtr;
+    frontPtr = frontPtr->next;
+    if (!frontPtr) {
+        backPtr = nullptr;
+    }
+    _size--;
+    return ret_val;
+}
+
