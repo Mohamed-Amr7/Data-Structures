@@ -25,7 +25,7 @@ private:
 
     shared_ptr<Node> insert(shared_ptr<Node> node, T new_value);
 
-    shared_ptr<Node> update(shared_ptr<Node> node);
+    void update(shared_ptr<Node> node);
 
     shared_ptr<Node> balance(shared_ptr<Node> node);
 
