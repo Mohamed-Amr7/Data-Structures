@@ -169,9 +169,10 @@ bool BST<T>::remove(T old_value) {
     return false;
 }
 
+// The height of a rooted tree is defined as the length of the longest path from the root node to a leaf node.
 template<class T>
 int BST<T>::height(shared_ptr<Node> node) {
-    if (node == nullptr) return 0;
+    if (node == nullptr) return -1;
     return max(height(node->getRight()), height(node->getLeft())) + 1;
 }
 
@@ -216,7 +217,7 @@ vector<T> BST<T>::traverse(TraverseType type) {
 }
 
 template<class T>
-void BST<T>::inorderTraversal(shared_ptr<Node> node, vector<T>& result) {
+void BST<T>::inorderTraversal(shared_ptr<Node> node, vector<T> &result) {
     if (node != nullptr) {
         // Inorder traversal follows the pattern of left subtree, current node, and then right subtree.
         inorderTraversal(node->getLeft(), result);
@@ -234,7 +235,7 @@ vector<T> BST<T>::inorderTraversal() {
 }
 
 template<class T>
-void BST<T>::preorderTraversal(shared_ptr<Node> node, vector<T>& result) {
+void BST<T>::preorderTraversal(shared_ptr<Node> node, vector<T> &result) {
     if (node != nullptr) {
         // Preorder traversal starts with processing the current node, followed by the left subtree and then the right subtree.
         result.push_back(node->getData());
@@ -252,7 +253,7 @@ vector<T> BST<T>::preorderTraversal() {
 }
 
 template<class T>
-void BST<T>::postorderTraversal(shared_ptr<Node> node, vector<T>& result) {
+void BST<T>::postorderTraversal(shared_ptr<Node> node, vector<T> &result) {
     if (node != nullptr) {
         // Postorder traversal explores the left subtree, right subtree, and then processes the current node.
         postorderTraversal(node->getLeft(), result);
@@ -275,7 +276,7 @@ vector<T> BST<T>::levelOrderTraversal(shared_ptr<Node> node) {
         return vector<T>{};
     }
     // Level order traversal explores nodes level by level, starting from the root.
-    vector<T>result;
+    vector<T> result;
     queue<shared_ptr<Node>> queue;
     queue.push(node);
 

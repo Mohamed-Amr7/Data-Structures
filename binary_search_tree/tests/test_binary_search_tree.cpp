@@ -61,12 +61,12 @@ void testHeight(){
     testTree.insert(6);
     testTree.insert(8);
     testTree.insert(13);
-    assert(testTree.height() == 4);
+    assert(testTree.height() == 3);
 
     testTree.clear();
-    assert(testTree.height() == 0);
+    assert(testTree.height() == -1);
     testTree.insert(42);
-    assert(testTree.height() == 1);
+    assert(testTree.height() == 0);
 }
 
 void testRemove() {
