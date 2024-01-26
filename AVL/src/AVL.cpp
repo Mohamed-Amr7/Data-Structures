@@ -29,3 +29,23 @@ T AVL<T>::top() {
     if (isEmpty()) throw runtime_error("AVL tree is empty!");
     return root->data;
 }
+
+template<class T>
+bool AVL<T>::contains(shared_ptr<typename AVL<T>::Node> node, T value) {
+    // If the current node is null, then the value is not in the tree
+    if (node == nullptr) {
+        return false;
+    }
+    if (!(value < node->getData()) and !(node->getData() < value)) {
+        return true;
+    } else if (value < node->getData()) {
+        return contains(node->getLeft(), value);
+    } else {
+        return contains(node->getRight(), value);
+    }
+}
+
+template<class T>
+bool AVL<T>::contains(T value) {
+    return contains(root, value);
+}
