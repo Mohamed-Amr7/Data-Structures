@@ -36,12 +36,12 @@ bool AVL<T>::contains(shared_ptr<typename AVL<T>::Node> node, T value) {
     if (node == nullptr) {
         return false;
     }
-    if (!(value < node->getData()) and !(node->getData() < value)) {
+    if (!(value < node->data) and !(node->data < value)) {
         return true;
-    } else if (value < node->getData()) {
-        return contains(node->getLeft(), value);
+    } else if (value < node->data) {
+        return contains(node->left, value);
     } else {
-        return contains(node->getRight(), value);
+        return contains(node->right, value);
     }
 }
 
