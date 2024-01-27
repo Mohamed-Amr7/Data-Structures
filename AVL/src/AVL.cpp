@@ -165,3 +165,80 @@ shared_ptr<typename AVL<T>::Node> AVL<T>::rightRotation(shared_ptr<AVL::Node> no
 }
 
 
+template<class T>
+AVL<T>::Node AVL<T>::find_min(shared_ptr<Node> node) {
+    // Find the leftmost node of a subtree
+    while (node->left != nullptr) {
+        node = node->left;
+    }
+    return *node;
+}
+
+template<class T>
+shared_ptr<typename AVL<T>::Node> AVL<T>::remove(shared_ptr<Node> node, T old_value) {
+    if (node == nullptr) {
+        return nullptr; // Base case: element not found.
+    }
+
+    // Finding phase
+    if (old_value < node->data) {
+        // Recursively remove from the left subtree and update the left pointer.
+        node->left = remove(node->left, old_value);
+    } else if (node->data < old_value) {
+        // Recursively remove from the right subtree and update the right pointer.
+        node->right = remove(node->right, old_value);
+    } else {
+        // Element found, perform removal.
+
+        // In case there is only a Right subtree or no subtree at all.
+        if (node->left == nullptr) {
+            return node->right;
+        }
+            // In case there is only a left subtree.
+        else if (node->right == nullptr) {
+            return node->left;
+        } else {
+            // Find the minimum value in the right subtree, which serves as the replacement for the current node's data.
+            Node tmp = find_min(node->right);
+            node->data = tmp.data;
+
+            // Recursively remove the leftmost right-subtree node after updating the current node's data.
+            // Multiple nodes sharing the same data temporarily isn't an issue as we start searching from the node's right subtree.
+            node->right = remove(node->right, tmp.data);
+        }
+    }
+    update(node);
+
+    return balance(node);
+}
+
+
+template<class T>
+bool AVL<T>::remove(T old_value) {
+    if (contains(old_value)) {
+        root = remove(root, old_value);
+        --node_count;
+        return true;
+    }
+    return false;
+}
+
+
+template<class T>
+shared_ptr<typename AVL<T>::Node> AVL<T>::clear(shared_ptr<Node> node) {
+    if (node != nullptr) {
+        // Recursively clear the left and right subtrees.
+        node->left = clear(node->left);
+        node->right = clear(node->right);
+        return nullptr;
+    }
+    return nullptr; // Return nullptr to update the parent's pointer.
+}
+
+template<class T>
+void AVL<T>::clear() {
+    root = clear(root);
+    node_count = 0;
+}
+
+
