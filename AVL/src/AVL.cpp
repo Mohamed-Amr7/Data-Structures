@@ -144,3 +144,24 @@ shared_ptr<typename AVL<T>::Node> AVL<T>::rightLeftCase(shared_ptr<Node> node) {
     node->right = rightRotation(node->right);
     return rightRightCase(node);
 }
+
+template<class T>
+shared_ptr<typename AVL<T>::Node> AVL<T>::leftRotation(shared_ptr<Node> node) {
+    shared_ptr<Node> newParent = node->right;
+    node->right = newParent->left;
+    newParent->left = node;
+    update(node);
+    update(newParent);
+    return newParent;
+}
+template<class T>
+shared_ptr<typename AVL<T>::Node> AVL<T>::rightRotation(shared_ptr<AVL::Node> node){
+    shared_ptr<Node> newParent = node->left;
+    node->left = newParent->right;
+    newParent->right = node;
+    update(node);
+    update(newParent);
+    return newParent;
+}
+
+
