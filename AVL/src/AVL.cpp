@@ -90,7 +90,7 @@ void AVL<T>::update(shared_ptr<Node> node) {
     int leftHeight = -1;
     int rightHeight = -1;
     if (node->left != nullptr) leftHeight = node->left->height;
-    if (node->right != nullptr) leftHeight = node->right->height;
+    if (node->right != nullptr) rightHeight = node->right->height;
 
     node->height = 1 + max(leftHeight, rightHeight); // Update node height.
     node->balance_factor = rightHeight - leftHeight; // Update balance factor.
