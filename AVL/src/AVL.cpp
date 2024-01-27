@@ -6,7 +6,7 @@
 using namespace std;
 
 template<class T>
-AVL<T>::Node::Node(const T &value) : data(value), height(1), balance_factor(0), left(nullptr), right(nullptr) {}
+AVL<T>::Node::Node(const T &value) : data(value), height(0), balance_factor(0), left(nullptr), right(nullptr) {}
 
 template<class T>
 AVL<T>::AVL() {
