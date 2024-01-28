@@ -241,4 +241,100 @@ void AVL<T>::clear() {
     node_count = 0;
 }
 
+template<class T>
+vector<T> AVL<T>::traverse(TraverseType type) {
+    switch (type) {
+        case INORDER:
+            return inorderTraversal();
+        case PREORDER:
+            return preorderTraversal();
+        case POSTORDER:
+            return postorderTraversal();
+        case LEVELORDER:
+            return levelOrderTraversal(root);
+        default:
+            cerr << "Invalid traversal type!" << endl;
+            return vector<T>{};
+    }
+}
+
+template<class T>
+void AVL<T>::inorderTraversal(shared_ptr<Node> node, vector<T> &result) {
+    if (node != nullptr) {
+        // Inorder traversal follows the pattern of left subtree, current node, and then right subtree.
+        inorderTraversal(node->left, result);
+        result.push_back(node->data);
+        inorderTraversal(node->right, result);
+    }
+}
+
+// Wrapper function
+template<class T>
+vector<T> AVL<T>::inorderTraversal() {
+    vector<T> result;
+    inorderTraversal(root, result);
+    return result;
+}
+
+template<class T>
+void AVL<T>::preorderTraversal(shared_ptr<Node> node, vector<T> &result) {
+    if (node != nullptr) {
+        // Preorder traversal starts with processing the current node, followed by the left subtree and then the right subtree.
+        result.push_back(node->data);
+        preorderTraversal(node->left, result);
+        preorderTraversal(node->right, result);
+    }
+}
+
+// Wrapper function
+template<class T>
+vector<T> AVL<T>::preorderTraversal() {
+    vector<T> result;
+    preorderTraversal(root, result);
+    return result;
+}
+
+template<class T>
+void AVL<T>::postorderTraversal(shared_ptr<Node> node, vector<T> &result) {
+    if (node != nullptr) {
+        // Postorder traversal explores the left subtree, right subtree, and then processes the current node.
+        postorderTraversal(node->left, result);
+        postorderTraversal(node->right, result);
+        result.push_back(node->data);
+    }
+}
+
+// Wrapper function
+template<class T>
+vector<T> AVL<T>::postorderTraversal() {
+    vector<T> result;
+    postorderTraversal(root, result);
+    return result;
+}
+
+template<class T>
+vector<T> AVL<T>::levelOrderTraversal(shared_ptr<Node> node) {
+    if (node == nullptr) {
+        return vector<T>{};
+    }
+    // Level order traversal explores nodes level by level, starting from the root.
+    vector<T> result;
+    queue<shared_ptr<Node>> queue;
+    queue.push(node);
+
+    while (!queue.empty()) {
+        auto current = queue.front();
+        queue.pop();
+        result.push_back(current->data);
+
+        if (current->left != nullptr) {
+            queue.push(current->left);
+        }
+
+        if (current->right != nullptr) {
+            queue.push(current->right);
+        }
+    }
+    return result;
+}
 

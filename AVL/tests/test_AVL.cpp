@@ -112,6 +112,66 @@ void testRemove() {
     assert(avlTree.contains(37));
 }
 
+void testTraverseInorder() {
+    AVL<int> avlTree;
+    avlTree.insert(5);
+    avlTree.insert(3);
+    avlTree.insert(7);
+    avlTree.insert(2);
+    avlTree.insert(4);
+    avlTree.insert(6);
+    avlTree.insert(8);
+
+    vector<int> result = avlTree.traverse(AVL<int>::INORDER);
+    vector<int> expected = {2, 3, 4, 5, 6, 7, 8};
+    assert(result == expected);
+}
+
+void testTraversePreorder() {
+    AVL<int> avlTree;
+    avlTree.insert(5);
+    avlTree.insert(3);
+    avlTree.insert(7);
+    avlTree.insert(2);
+    avlTree.insert(4);
+    avlTree.insert(6);
+    avlTree.insert(8);
+
+    vector<int> result = avlTree.traverse(AVL<int>::PREORDER);
+    vector<int> expected = {5, 3, 2, 4, 7, 6, 8};
+    assert(result == expected);
+}
+
+void testTraversePostorder() {
+    AVL<int> avlTree;
+    avlTree.insert(5);
+    avlTree.insert(3);
+    avlTree.insert(7);
+    avlTree.insert(2);
+    avlTree.insert(4);
+    avlTree.insert(6);
+    avlTree.insert(8);
+
+    vector<int> result = avlTree.traverse(AVL<int>::POSTORDER);
+    vector<int> expected = {2, 4, 3, 6, 8, 7, 5};
+    assert(result == expected);
+}
+
+void testTraverseLevelorder() {
+    AVL<int> avlTree;
+    avlTree.insert(5);
+    avlTree.insert(3);
+    avlTree.insert(7);
+    avlTree.insert(2);
+    avlTree.insert(4);
+    avlTree.insert(6);
+    avlTree.insert(8);
+
+    vector<int> result = avlTree.traverse(AVL<int>::LEVELORDER);
+    vector<int> expected = {5, 3, 7, 2, 4, 6, 8};
+    assert(result == expected);
+}
+
 void runAllTests() {
     testIsEmpty();
     testTop();
@@ -121,6 +181,10 @@ void runAllTests() {
     testHeight();
     testClear();
     testRemove();
+    testTraverseInorder();
+    testTraversePreorder();
+    testTraversePostorder();
+    testTraverseLevelorder();
 }
 
 int main(){
