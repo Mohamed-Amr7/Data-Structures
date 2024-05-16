@@ -12,7 +12,6 @@ private:
     T IDENTITY;
     T (*combine)(T a, T b);
 
-//    void build(const std::vector<T>& v, int node, int start, int end);
     void build(const std::vector<T> &v, int n);
     void update(int point, T val, int node, int start, int end);
     T query(int ql, int qr, int node, int start, int end);
